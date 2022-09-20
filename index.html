@@ -34,11 +34,13 @@
             <section class="banners" id="notifications">Start Fighting Goblins!</section>
 
             <section class="player">
+                <h1>Hero</h1>
                 <div>
-                    <img src="" alt="Player" />
+                    <img src="assets\player.png" alt="Player" />
                 </div>
 
                 <div>
+                    <p>Health: 10</p>
                     <progress id="hp" value="10" max="10"></progress>
                 </div>
             </section>
@@ -50,9 +52,21 @@
                     <button>Add</button>
                 </form>
                 <ul id="goblin-list">
-                    <li class="goblin-display">Levi the Goblin</li>
-                    <li class="goblin-display">Bob the Frog</li>
-                    <li class="goblin-display">Larry the Goblin</li>
+                    <li class="goblin-display">
+                        <img src="assets\goblino.png" alt="" />
+                        <span class="goblin-type">Levi the Goblin</span>
+                        <span class="health">4</span>
+                    </li>
+                    <li class="goblin-display">
+                        <img src="assets\frog.png" alt="" />
+                        <span class="goblin-type">Bob the Frog</span>
+                        <span class="health">2</span>
+                    </li>
+                    <li class="goblin-display">
+                        <img src="assets\goblino.png" alt="" />
+                        <span class="goblin-type">Larry The Goblin</span>
+                        <span class="health">4</span>
+                    </li>
                 </ul>
                 <button id="remove">Remove Slain Goblins</button>
             </section>
