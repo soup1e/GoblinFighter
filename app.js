@@ -5,6 +5,7 @@ const playerHealth = document.getElementById('playerhealth');
 const playerImage = document.getElementById('playerimg');
 const hpBar = document.getElementById('playerhpbar');
 const messageDisplay = document.getElementById('notifications');
+const killsDisplay = document.getElementById('scoreboard');
 
 /* State */
 let player = {
@@ -12,8 +13,11 @@ let player = {
 };
 
 let message = '';
+let kills = 0;
+
 /* Events */
 
+/* Display Functions */
 function displayPlayer() {
     playerHealth.textContent = Math.max(0, player.health);
     hpBar.value = playerHealth.textContent;
@@ -27,8 +31,12 @@ function displayPlayer() {
 function displayMessage() {
     messageDisplay.textContent = message;
 }
-/* Display Functions */
+
+function displayKills() {
+    killsDisplay.textContent = `You defeated ${kills} Goblins!`;
+}
 
 // (don't forget to call any display functions you want to run on page load!)
 displayPlayer();
 displayMessage();
+displayKills();
