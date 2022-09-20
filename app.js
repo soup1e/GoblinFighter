@@ -6,18 +6,52 @@ const playerImage = document.getElementById('playerimg');
 const hpBar = document.getElementById('playerhpbar');
 const messageDisplay = document.getElementById('notifications');
 const killsDisplay = document.getElementById('scoreboard');
+const goblinList = document.getElementById('goblin-list');
 
 /* State */
 let player = {
     health: 0,
 };
 
+let goblins = [
+    {
+        name: 'Levi',
+        type: 'imp',
+        health: 5,
+    },
+    {
+        name: 'Bob',
+        type: 'frog',
+        health: 2,
+    },
+    {
+        name: 'Larry',
+        type: 'imp',
+        health: 5,
+    },
+];
+
+const imp = {
+    type: 'imp',
+    health: 5,
+};
+
+const frog = {
+    type: 'frog',
+    health: 2,
+};
+
+const orc = {
+    type: 'orc',
+    health: 10,
+};
+
 let message = '';
 let kills = 0;
-
 /* Events */
 
 /* Display Functions */
+
 function displayPlayer() {
     playerHealth.textContent = Math.max(0, player.health);
     hpBar.value = playerHealth.textContent;
@@ -38,5 +72,6 @@ function displayKills() {
 
 // (don't forget to call any display functions you want to run on page load!)
 displayPlayer();
+displayGoblins();
 displayMessage();
 displayKills();
