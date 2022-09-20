@@ -36,12 +36,13 @@
             <section class="player">
                 <h1>Hero</h1>
                 <div>
-                    <img src="assets\player.png" alt="Player" />
+                    <img id="playerimg" src="assets\player.png" alt="Player" />
                 </div>
 
-                <div>
-                    <p>Health: 10</p>
-                    <progress id="hp" value="10" max="10"></progress>
+                <div class="playerinfo">
+                    Health:
+                    <p id="playerhealth">10</p>
+                    <progress id="playerhpbar" value="10" max="10">10</progress>
                 </div>
             </section>
 

@@ -96,3 +96,29 @@ main {
     grid-template-rows: 0.2fr 1.5fr 1.3fr;
     justify-items: center;
 }
+
+.playerinfo {
+    display: grid;
+    grid-template-rows: 0.1fr 0.1fr 0.1fr;
+    text-align: center;
+}
+
+#playerhpbar {
+    width: 300px;
+    height: 24px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 4px solid #3c3c3c;
+    overflow: hidden;
+    position: relative;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+progress::-webkit-progress-value {
+    background: red;
+    position: relative;
+    overflow: hidden;
+}
