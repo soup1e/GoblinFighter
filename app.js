@@ -1,4 +1,6 @@
 /* Imports */
+import { renderGoblin } from './render.js';
+import { getRandomItem } from './render.js';
 
 /* Get DOM Elements */
 const playerHealth = document.getElementById('playerhealth');
@@ -10,7 +12,7 @@ const goblinList = document.getElementById('goblin-list');
 
 /* State */
 let player = {
-    health: 0,
+    health: 10,
 };
 
 let goblins = [
@@ -51,7 +53,14 @@ let kills = 0;
 /* Events */
 
 /* Display Functions */
+function displayGoblins() {
+    goblinList.innerHTML = '';
 
+    for (const goblin of goblins) {
+        const goblinEl = renderGoblin(goblin);
+        goblinList.append(goblinEl);
+    }
+}
 function displayPlayer() {
     playerHealth.textContent = Math.max(0, player.health);
     hpBar.value = playerHealth.textContent;

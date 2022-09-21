@@ -1,0 +1,29 @@
+export function getRandomNumber(choices) {
+    return Math.floor(Math.random() * choices);
+}
+
+export function getRandomItem(array) {
+    const random = getRandomNumber(array.length);
+    const item = array[random];
+    return item;
+}
+
+export function renderGoblin(goblin) {
+    const li = document.createElement('li');
+    li.classList.add('goblin-display');
+    const goblinImage = document.createElement('img');
+    if (goblin.health > 1) {
+        goblinImage.src = `assets/${goblin.type}.png`;
+    } else {
+        goblinImage.src = `assets/${goblin.type}Dead.png`;
+    }
+    const goblinName = document.createElement('span');
+    goblinName.classList.add('goblin-name');
+    goblinName.textContent = goblin.name;
+    const health = document.createElement('span');
+    health.classList.add('health');
+    health.textContent = goblin.health;
+
+    li.append(goblinImage, goblinName, health);
+    return li;
+}
