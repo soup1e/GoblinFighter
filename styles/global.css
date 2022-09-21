@@ -32,4 +32,93 @@ header .logo {
 
 main {
     padding: 20px;
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 0.5fr 1fr;
+    grid-template-rows: 0.2fr 0.2fr 2.6fr;
+    justify-items: center;
+}
+
+#banners {
+    grid-area: 1 / 1 / 3 / 3;
+    place-content: center;
+}
+#notifications {
+    grid-area: 2 / 1 / 3 / 3;
+}
+#scoreboard {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+#goblin-list {
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
+
+.goblin-display {
+    border: 1px solid grey;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1.5fr 0.5fr;
+    column-gap: 75px;
+    padding: 10px;
+    align-items: center;
+    justify-items: center;
+    font-size: 24px;
+    height: 125px;
+    background-color: rgb(255, 150, 150);
+    -webkit-box-shadow: 3px 3px 14px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 14px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 14px 0px rgba(0, 0, 0, 0.75);
+}
+
+.goblin-display img {
+    width: 100px;
+    justify-items: start;
+}
+
+.health {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.player img {
+    width: 300px;
+    height: auto;
+    padding: 20px;
+    background-color: lightcyan;
+    -webkit-box-shadow: 3px 3px 14px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 14px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 14px 0px rgba(0, 0, 0, 0.75);
+}
+
+.player {
+    display: grid;
+    grid-template-rows: 0.2fr 1.5fr 1.3fr;
+    justify-items: center;
+}
+
+.playerinfo {
+    display: grid;
+    grid-template-rows: 0.1fr 0.1fr 0.1fr;
+    text-align: center;
+}
+
+#playerhpbar {
+    width: 300px;
+    height: 24px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 4px solid #3c3c3c;
+    overflow: hidden;
+    position: relative;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+progress::-webkit-progress-value {
+    background: red;
+    position: relative;
+    overflow: hidden;
 }
