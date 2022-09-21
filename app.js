@@ -49,7 +49,7 @@ const orc = {
 };
 
 const playerAttackArray = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 8];
-
+const goblinAttackArray = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 4];
 let message = 'Start Fighting Goblins!';
 let kills = 0;
 /* Events */
@@ -72,6 +72,10 @@ function displayGoblins() {
             const playerAttack = getRandomItem(playerAttackArray);
 
             goblin.health = Math.max(0, goblin.health - playerAttack); // new health is old health minus attack cant go below 0
+
+            const goblinAttack = getRandomItem(goblinAttackArray);
+
+            player.health = Math.max(0, player.health - goblinAttack);
 
             displayMessage();
             displayPlayer();
