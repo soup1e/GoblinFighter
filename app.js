@@ -10,6 +10,7 @@ const messageDisplay = document.getElementById('notifications');
 const killsDisplay = document.getElementById('scoreboard');
 const goblinList = document.getElementById('goblin-list');
 const addGoblin = document.getElementById('add-goblins-form');
+const removeButton = document.getElementById('remove');
 
 /* State */
 let player = {
@@ -51,11 +52,11 @@ const Orc = {
 
 const Boss = {
     type: 'Boss',
-    health: 20,
+    health: 15,
 };
 
 const playerAttackArray = [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 10];
-const goblinAttackArray = [0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 4];
+const goblinAttackArray = [0, 0, 0, 1, 1, 1, 1, 2, 2, 3];
 const goblinTypeArray = [Imp, Imp, Imp, Imp, Imp, Frog, Frog, Frog, Orc, Orc, Boss];
 
 let message = 'Start Fighting Goblins!';
@@ -81,10 +82,22 @@ addGoblin.addEventListener('submit', (e) => {
     displayKills();
 });
 
+removeButton.addEventListener('click', () => {
+    const notDead = [];
+
+    for (const goblin of goblins) {
+        if (goblin.health > 0) {
+            notDead.push(goblin);
+        }
+    }
+    goblins = notDead;
+    displayGoblins();
+});
+
 /* Display Functions */
 function displayGoblins() {
     goblinList.innerHTML = '';
-    //IF DEAD BREAK CODE TEST ! MAKE PLAY AGAIN BUTTON LATER
+    // if player is dead then cant fight
     if (player.health === 0) {
         return;
     } else {
