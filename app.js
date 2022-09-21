@@ -114,7 +114,7 @@ function displayGoblins() {
 
                 const playerAttack = getRandomItem(playerAttackArray);
 
-                goblin.health = Math.max(0, goblin.health - playerAttack); // new health is old health minus attack cant go below 0
+                goblin.health = Math.max(0, goblin.health - playerAttack);
 
                 const goblinAttack = getRandomItem(goblinAttackArray);
 
@@ -131,18 +131,21 @@ function displayGoblins() {
                 } else if (playerAttack === 10) {
                     message += `Critical Hit!`;
                     Math.max(10, (player.health += goblinAttack));
+                    message += ` You parried ${goblin.name}'s Attack!`;
+                    if (goblin.health === 0) {
+                        kills++;
+                    }
+                    levelUp();
+                    displayPlayer();
+                    displayMessage();
+                    displayKills();
+                    displayGoblins();
+                    return;
                 } else {
                     message += `You hit ${goblin.name} for ${playerAttack} damage. `;
                 }
 
-                if (playerAttack === 10) {
-                    message += `You parried ${goblin.name}'s Attack!`;
-                    displayPlayer();
-                    displayGoblins();
-                    displayMessage();
-                    displayKills();
-                    return;
-                } else if (goblinAttack === 0) {
+                if (goblinAttack === 0) {
                     message += `${goblin.name} didn't fight back!`;
                 } else {
                     message += `${goblin.name} hit you for ${goblinAttack} damage. `;
@@ -151,12 +154,24 @@ function displayGoblins() {
                 if (goblin.health === 0) {
                     kills++;
                 }
+
+                levelUp();
                 displayPlayer();
-                displayGoblins();
                 displayMessage();
                 displayKills();
+                displayGoblins();
             });
         }
+    }
+}
+
+function levelUp() {
+    if (kills === 5) {
+        player.health = 12;
+        message += ' | Level Up - Health increased to 12 | ';
+    } else if (kills === 10) {
+        player.health = 15;
+        message += ' | Level Up - Health increased to 15 | ';
     }
 }
 
@@ -179,7 +194,8 @@ function displayKills() {
 }
 
 // (don't forget to call any display functions you want to run on page load!)
+levelUp();
 displayPlayer();
-displayGoblins();
 displayMessage();
 displayKills();
+displayGoblins();
