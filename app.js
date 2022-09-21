@@ -9,6 +9,7 @@ const hpBar = document.getElementById('playerhpbar');
 const messageDisplay = document.getElementById('notifications');
 const killsDisplay = document.getElementById('scoreboard');
 const goblinList = document.getElementById('goblin-list');
+const addGoblin = document.getElementById('add-goblins-form');
 
 /* State */
 let player = {
@@ -18,41 +19,67 @@ let player = {
 let goblins = [
     {
         name: 'Levi',
-        type: 'imp',
+        type: 'Imp',
         health: 5,
     },
     {
         name: 'Bob',
-        type: 'frog',
+        type: 'Frog',
         health: 2,
     },
     {
         name: 'Larry',
-        type: 'imp',
+        type: 'Imp',
         health: 5,
     },
 ];
 
-const imp = {
-    type: 'imp',
+const Imp = {
+    type: 'Imp',
     health: 5,
 };
 
-const frog = {
-    type: 'frog',
+const Frog = {
+    type: 'Frog',
     health: 2,
 };
 
-const orc = {
-    type: 'orc',
+const Orc = {
+    type: 'Orc',
     health: 10,
+};
+
+const Boss = {
+    type: 'Boss',
+    health: 20,
 };
 
 const playerAttackArray = [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 10];
 const goblinAttackArray = [0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 4];
+const goblinTypeArray = [Imp, Imp, Imp, Imp, Imp, Frog, Frog, Frog, Orc, Orc, Boss];
+
 let message = 'Start Fighting Goblins!';
 let kills = 0;
 /* Events */
+addGoblin.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(addGoblin);
+    const newgoblinType = getRandomItem(goblinTypeArray);
+
+    const goblin = {
+        name: formData.get('name'),
+        type: newgoblinType.type,
+        health: newgoblinType.health,
+    };
+    goblins.push(goblin);
+
+    message = `A wild ${goblin.type} appeared!`;
+
+    displayPlayer();
+    displayGoblins();
+    displayMessage();
+    displayKills();
+});
 
 /* Display Functions */
 function displayGoblins() {

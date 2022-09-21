@@ -34,7 +34,7 @@ main {
     padding: 20px;
     display: grid;
     grid-auto-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.5fr 1fr;
     grid-template-rows: 0.2fr 0.2fr 2.6fr;
     justify-items: center;
 }
@@ -58,7 +58,7 @@ main {
 .goblin-display {
     border: 1px solid grey;
     display: grid;
-    grid-template-columns: 1fr 1.5fr 0.5fr;
+    grid-template-columns: 1fr 1.5fr 1.5fr 0.5fr;
     column-gap: 75px;
     padding: 10px;
     align-items: center;
