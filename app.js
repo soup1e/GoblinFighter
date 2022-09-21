@@ -48,8 +48,8 @@ const orc = {
     health: 10,
 };
 
-const playerAttackArray = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 8];
-const goblinAttackArray = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 4];
+const playerAttackArray = [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 10];
+const goblinAttackArray = [0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 4];
 let message = 'Start Fighting Goblins!';
 let kills = 0;
 /* Events */
@@ -57,30 +57,66 @@ let kills = 0;
 /* Display Functions */
 function displayGoblins() {
     goblinList.innerHTML = '';
+    //IF DEAD BREAK CODE TEST ! MAKE PLAY AGAIN BUTTON LATER
+    if (player.health === 0) {
+        return;
+    } else {
+        for (const goblin of goblins) {
+            const goblinEl = renderGoblin(goblin);
+            goblinList.append(goblinEl);
 
-    for (const goblin of goblins) {
-        const goblinEl = renderGoblin(goblin);
-        goblinList.append(goblinEl);
+            goblinEl.addEventListener('click', () => {
+                if (goblin.health < 1) {
+                    message = `Dead things can't fight back!`;
+                    displayMessage();
+                    return;
+                }
 
-        goblinEl.addEventListener('click', () => {
-            if (goblin.health < 1) {
-                message = `He's Already Dead`;
+                const playerAttack = getRandomItem(playerAttackArray);
+
+                goblin.health = Math.max(0, goblin.health - playerAttack); // new health is old health minus attack cant go below 0
+
+                const goblinAttack = getRandomItem(goblinAttackArray);
+
+                player.health = Math.max(0, player.health - goblinAttack);
+
+                message = '';
+                if (player.health === 0) {
+                    message = '';
+                    message = 'You Died. ';
+                }
+
+                if (playerAttack === 0) {
+                    message += `You Whiffed LOL! `;
+                } else if (playerAttack === 10) {
+                    message += `Critical Hit!`;
+                    Math.max(10, (player.health += goblinAttack));
+                } else {
+                    message += `You hit ${goblin.name} for ${playerAttack} damage. `;
+                }
+
+                if (playerAttack === 10) {
+                    message += `You parried ${goblin.name}'s Attack!`;
+                    displayPlayer();
+                    displayGoblins();
+                    displayMessage();
+                    displayKills();
+                    return;
+                } else if (goblinAttack === 0) {
+                    message += `${goblin.name} didn't fight back!`;
+                } else {
+                    message += `${goblin.name} hit you for ${goblinAttack} damage. `;
+                }
+
+                if (goblin.health === 0) {
+                    kills++;
+                }
+                displayPlayer();
+                displayGoblins();
                 displayMessage();
-                return;
-            }
-
-            const playerAttack = getRandomItem(playerAttackArray);
-
-            goblin.health = Math.max(0, goblin.health - playerAttack); // new health is old health minus attack cant go below 0
-
-            const goblinAttack = getRandomItem(goblinAttackArray);
-
-            player.health = Math.max(0, player.health - goblinAttack);
-
-            displayMessage();
-            displayPlayer();
-            displayGoblins();
-        });
+                displayKills();
+            });
+        }
     }
 }
 

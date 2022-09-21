@@ -12,10 +12,10 @@ export function renderGoblin(goblin) {
     const li = document.createElement('li');
     li.classList.add('goblin-display');
     const goblinImage = document.createElement('img');
-    if (goblin.health > 1) {
+    if (goblin.health > 0) {
         goblinImage.src = `assets/${goblin.type}.png`;
-    } else {
-        goblinImage.src = `assets/${goblin.type}Dead.png`;
+    } else if (goblin.health === 0) {
+        goblinImage.src = 'assets/' + goblin.type + 'Dead.png';
     }
     const goblinName = document.createElement('span');
     goblinName.classList.add('goblin-name');
